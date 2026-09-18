@@ -2,7 +2,7 @@
 
 End-to-end платформа для оценки маркетингового эксперимента в ритейле, исследования неоднородности эффекта воздействия и построения экономически обоснованной стратегии таргетинга. Python отвечает за статистические и ML-расчёты, PostgreSQL — за аналитические витрины, Power BI — за визуализацию и интерактивный анализ.
 
-> Статус: **Stage 3 реализован — готова leakage-safe клиентская feature mart с RFM и аудитом временного окна.** Исходные файлы пока отсутствуют, поэтому фактическая витрина и результаты анализа не публикуются.
+> Статус: **Stage 4 реализован — готов переиспользуемый A/B testing engine для Conversion Rate, CI, effect size, power, sample size и MDE.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании не рассчитан.
 
 ## Бизнес-задача
 
@@ -109,9 +109,15 @@ src/
   features/schema.py    # mapping фактических колонок на семантические роли
   features/rfm.py       # RFM scores и сегмент
   features/customer_features.py # клиентская feature mart
+  experiments/metrics.py        # CR и uplift-метрики
+  experiments/ab_test.py        # two-proportion z-test и orchestration
+  experiments/confidence_intervals.py
+  experiments/power.py          # power, sample size и MDE
 notebooks/01_data_overview.ipynb
+notebooks/02_ab_analysis.ipynb
 docs/stage_02_data_cleaning.md
 docs/stage_03_customer_feature_mart.md
+docs/stage_04_ab_testing.md
 tests/                  # unit- и интеграционные тесты
 sql/ddl/00_init.sql     # начальная настройка схем базы данных
 Dockerfile
@@ -146,7 +152,13 @@ python -m src.data.preprocessing
 python -m src.features.customer_features --mapping customer_feature_schema.json
 ```
 
-Формулы, leakage guard и правила mapping описаны в [docs/stage_03_customer_feature_mart.md](docs/stage_03_customer_feature_mart.md). Запуск PostgreSQL:
+Формулы, leakage guard и правила mapping описаны в [docs/stage_03_customer_feature_mart.md](docs/stage_03_customer_feature_mart.md). После материализации витрины запустите Stage 4:
+
+```bash
+python -m src.experiments.ab_test
+```
+
+Методология inference, power analysis и тестовая стратегия описаны в [docs/stage_04_ab_testing.md](docs/stage_04_ab_testing.md). Запуск PostgreSQL:
 
 ```bash
 docker compose up -d postgres
@@ -168,4 +180,4 @@ docker compose --profile tools run --rm pipeline
 
 ## Дальнейшее развитие
 
-Stages 4–10 последовательно добавят статистический inference, диагностику эксперимента, uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
+Stages 5–10 последовательно добавят диагностику эксперимента, uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
