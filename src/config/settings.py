@@ -10,7 +10,6 @@ from urllib.parse import quote_plus
 
 from dotenv import load_dotenv
 
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 

@@ -11,7 +11,6 @@ import polars as pl
 
 from src.config.settings import get_settings
 
-
 LOGGER = logging.getLogger(__name__)
 SUPPORTED_SUFFIXES: Final[tuple[str, ...]] = (".csv", ".gz", ".parquet")
 EXPECTED_ENTITIES: Final[tuple[str, ...]] = (
@@ -71,7 +70,9 @@ class RawDataLoader:
                 f"{details}"
             )
 
-        missing = tuple(entity for entity in EXPECTED_ENTITIES if entity not in discovered)
+        missing = tuple(
+            entity for entity in EXPECTED_ENTITIES if entity not in discovered
+        )
         if missing:
             raise MissingRawDataError(self._missing_message(missing))
         return discovered
@@ -118,8 +119,12 @@ class RawDataLoader:
 
 def main() -> None:
     """Проверить схемы источников из командной строки."""
-    parser = argparse.ArgumentParser(description="Проверить схемы исходных данных RetailHero.")
-    parser.add_argument("--raw-dir", type=Path, help="Переопределить настроенный raw-каталог.")
+    parser = argparse.ArgumentParser(
+        description="Проверить схемы исходных данных RetailHero."
+    )
+    parser.add_argument(
+        "--raw-dir", type=Path, help="Переопределить настроенный raw-каталог."
+    )
     args = parser.parse_args()
     settings = get_settings()
     logging.basicConfig(
@@ -127,7 +132,11 @@ def main() -> None:
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
     )
     loader = RawDataLoader(args.raw_dir or settings.raw_data_dir)
-    for entity, schema in loader.inspect_schemas().items():
+    try:
+        schemas = loader.inspect_schemas()
+    except MissingRawDataError as error:
+        parser.error(str(error))
+    for entity, schema in schemas.items():
         print(f"\n[{entity}]")
         for column, dtype in schema.items():
             print(f"{column}: {dtype}")
