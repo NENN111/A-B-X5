@@ -1,0 +1,22 @@
+{
+  "experiment_start": null,
+  "lookback_days": 365,
+  "strict_referential_integrity": true,
+  "clients": {
+    "client_id": null,
+    "age": null,
+    "birth_date": null,
+    "gender": null
+  },
+  "purchases": {
+    "client_id": null,
+    "transaction_id": null,
+    "transaction_datetime": null,
+    "datetime_format": null,
+    "amount": null,
+    "product_id": null,
+    "regular_amount": null
+  },
+  "products": null,
+  "experiment": null
+}

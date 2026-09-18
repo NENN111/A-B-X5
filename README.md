@@ -2,7 +2,7 @@
 
 End-to-end платформа для оценки маркетингового эксперимента в ритейле, исследования неоднородности эффекта воздействия и построения экономически обоснованной стратегии таргетинга. Python отвечает за статистические и ML-расчёты, PostgreSQL — за аналитические витрины, Power BI — за визуализацию и интерактивный анализ.
 
-> Статус: **Stage 2 реализован — готовы профилирование, безопасная очистка, EDA-артефакты и тесты.** Исходные файлы пока отсутствуют, поэтому фактические схемы и результаты анализа не публикуются.
+> Статус: **Stage 3 реализован — готова leakage-safe клиентская feature mart с RFM и аудитом временного окна.** Исходные файлы пока отсутствуют, поэтому фактическая витрина и результаты анализа не публикуются.
 
 ## Бизнес-задача
 
@@ -106,9 +106,13 @@ src/
   data/quality.py       # профили качества и EDA-таблицы
   data/preprocessing.py # очистка, аудит и orchestration Stage 2
   data/database.py      # фабрика подключения к PostgreSQL
+  features/schema.py    # mapping фактических колонок на семантические роли
+  features/rfm.py       # RFM scores и сегмент
+  features/customer_features.py # клиентская feature mart
 notebooks/01_data_overview.ipynb
 docs/stage_02_data_cleaning.md
-tests/                  # unit- и интеграционные тесты data layer
+docs/stage_03_customer_feature_mart.md
+tests/                  # unit- и интеграционные тесты
 sql/ddl/00_init.sql     # начальная настройка схем базы данных
 Dockerfile
 docker-compose.yml
@@ -136,7 +140,13 @@ python -m src.data.loader
 python -m src.data.preprocessing
 ```
 
-Описание политики очистки и выходных артефактов находится в [docs/stage_02_data_cleaning.md](docs/stage_02_data_cleaning.md). Запуск PostgreSQL:
+Описание политики очистки и выходных артефактов находится в [docs/stage_02_data_cleaning.md](docs/stage_02_data_cleaning.md). После изучения фактической схемы заполните mapping и запустите Stage 3:
+
+```bash
+python -m src.features.customer_features --mapping customer_feature_schema.json
+```
+
+Формулы, leakage guard и правила mapping описаны в [docs/stage_03_customer_feature_mart.md](docs/stage_03_customer_feature_mart.md). Запуск PostgreSQL:
 
 ```bash
 docker compose up -d postgres
@@ -158,4 +168,4 @@ docker compose --profile tools run --rm pipeline
 
 ## Дальнейшее развитие
 
-Stages 3–10 последовательно добавят клиентскую витрину, статистический inference, диагностику эксперимента, uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
+Stages 4–10 последовательно добавят статистический inference, диагностику эксперимента, uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
