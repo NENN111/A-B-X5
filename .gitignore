@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Переменные окружения и credentials
+.env
+!.env.example
+
+# Артефакты данных: сохраняем инструкции и структуру каталогов
+data/raw/*
+!data/raw/README.md
+data/interim/*
+!data/interim/README.md
+data/processed/*
+!data/processed/README.md
+
+# Модели и сгенерированные результаты
+/models/
+reports/
+*.joblib
+*.pkl
+
+# Редакторы и операционная система
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
