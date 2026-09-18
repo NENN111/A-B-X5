@@ -113,11 +113,18 @@ src/
   experiments/ab_test.py        # two-proportion z-test и orchestration
   experiments/confidence_intervals.py
   experiments/power.py          # power, sample size и MDE
+  experiments/srm.py            # Sample Ratio Mismatch
+  experiments/aa_test.py        # A/A-симуляции
+  experiments/bootstrap.py      # bootstrap uncertainty uplift
+  experiments/segment_analysis.py
+  experiments/validation.py     # orchestration Stage 5
 notebooks/01_data_overview.ipynb
 notebooks/02_ab_analysis.ipynb
+notebooks/03_experiment_validation.ipynb
 docs/stage_02_data_cleaning.md
 docs/stage_03_customer_feature_mart.md
 docs/stage_04_ab_testing.md
+docs/stage_05_experiment_validation.md
 tests/                  # unit- и интеграционные тесты
 sql/ddl/00_init.sql     # начальная настройка схем базы данных
 Dockerfile
@@ -158,7 +165,13 @@ python -m src.features.customer_features --mapping customer_feature_schema.json
 python -m src.experiments.ab_test
 ```
 
-Методология inference, power analysis и тестовая стратегия описаны в [docs/stage_04_ab_testing.md](docs/stage_04_ab_testing.md). Запуск PostgreSQL:
+Методология inference, power analysis и тестовая стратегия описаны в [docs/stage_04_ab_testing.md](docs/stage_04_ab_testing.md). После Stage 4 запустите полный validation layer:
+
+```bash
+python -m src.experiments.validation
+```
+
+SRM, A/A, bootstrap, сегментные эффекты и их тесты описаны в [docs/stage_05_experiment_validation.md](docs/stage_05_experiment_validation.md). Запуск PostgreSQL:
 
 ```bash
 docker compose up -d postgres
@@ -174,10 +187,10 @@ docker compose --profile tools run --rm pipeline
 ## Ограничения
 
 - В текущем checkout отсутствуют исходные файлы и их фактические схемы.
-- Статистические результаты, качество моделей и бизнес-эффект ещё не рассчитаны.
+- Фактические статистические результаты, качество моделей и бизнес-эффект ещё не рассчитаны без исходных данных.
 - Стандартные Docker credentials предназначены только для локальной разработки и должны быть заменены в другой среде.
 - Полный DDL аналитических витрин будет реализован на Stage 8 после проверки выходных схем.
 
 ## Дальнейшее развитие
 
-Stages 5–10 последовательно добавят диагностику эксперимента, uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
+Stages 6–10 последовательно добавят uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
