@@ -2,7 +2,7 @@
 
 End-to-end платформа для оценки маркетингового эксперимента в ритейле, исследования неоднородности эффекта воздействия и построения экономически обоснованной стратегии таргетинга. Python отвечает за статистические и ML-расчёты, PostgreSQL — за аналитические витрины, Power BI — за визуализацию и интерактивный анализ.
 
-> Статус: **реализованы data layer, feature mart, A/B-анализ, валидация эксперимента и baseline uplift-модели.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании и качество моделей не рассчитаны.
+> Статус: **реализованы data layer, feature mart, A/B-анализ, валидация эксперимента, baseline uplift-модели и сценарная оптимизация таргетинга.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании, качество моделей и бизнес-результат не рассчитаны.
 
 ## Бизнес-задача
 
@@ -75,7 +75,7 @@ flowchart LR
 
 ## Оценка бизнес-эффекта
 
-Стратегии Target All и Uplift Targeting будут сравниваться при настраиваемых параметрах стоимости коммуникации, прибыли с конверсии и порога таргетинга. Если подтверждённые данные о марже отсутствуют, все денежные результаты будут явно помечены как сценарный анализ.
+Реализовано сравнение Target All и Uplift Targeting при явных параметрах стоимости коммуникации, прибыли с конверсии и порога таргетинга. Оптимизатор проверяет все достижимые размеры аудитории и максимизирует ожидаемую incremental profit. Все денежные результаты помечаются как сценарный анализ.
 
 ## Dashboard Power BI
 
@@ -123,15 +123,20 @@ src/
   models/t_learner.py           # T-Learner baseline
   models/uplift_metrics.py      # Qini, AUUC и децильные таблицы
   models/model_evaluation.py    # holdout evaluation и scoring
+  business/targeting.py         # клиентские типы и targeting rule
+  business/economics.py         # scenario unit economics
+  business/optimization.py      # threshold optimization и orchestration
 notebooks/01_data_overview.ipynb
 notebooks/02_ab_analysis.ipynb
 notebooks/03_experiment_validation.ipynb
 notebooks/05_uplift_modeling.ipynb
+notebooks/06_business_analysis.ipynb
 docs/stage_02_data_cleaning.md
 docs/stage_03_customer_feature_mart.md
 docs/stage_04_ab_testing.md
 docs/stage_05_experiment_validation.md
 docs/uplift_modeling.md
+docs/business_optimization.md
 tests/                  # unit- и интеграционные тесты
 sql/ddl/00_init.sql     # начальная настройка схем базы данных
 Dockerfile
@@ -184,7 +189,16 @@ SRM, A/A, bootstrap, сегментные эффекты и их тесты оп
 python -m src.models.model_evaluation
 ```
 
-Формулы, защита от leakage, артефакты и тестовая стратегия описаны в [docs/uplift_modeling.md](docs/uplift_modeling.md). Запуск PostgreSQL:
+Формулы, защита от leakage, артефакты и тестовая стратегия описаны в [docs/uplift_modeling.md](docs/uplift_modeling.md). Для сценарного сравнения стратегий передайте явные экономические параметры:
+
+```bash
+python -m src.business.optimization \
+  --communication-cost 2.0 \
+  --profit-per-conversion 100.0 \
+  --targeting-threshold 0.02
+```
+
+Формулы прибыли, интерпретация типов клиентов и оптимизация порога описаны в [docs/business_optimization.md](docs/business_optimization.md). Запуск PostgreSQL:
 
 ```bash
 docker compose up -d postgres
