@@ -1,0 +1,151 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "5662f1399a591ff68ec6",
+  "position": {
+    "x": 24,
+    "y": 232,
+    "z": 4,
+    "height": 440,
+    "width": 1216,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "experiment_validation_summary"
+                    }
+                  },
+                  "Property": "srm_detected"
+                }
+              },
+              "queryRef": "experiment_validation_summary.srm_detected",
+              "nativeQueryRef": "srm_detected"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "experiment_validation_summary"
+                    }
+                  },
+                  "Property": "aa_simulations"
+                }
+              },
+              "queryRef": "experiment_validation_summary.aa_simulations",
+              "nativeQueryRef": "aa_simulations"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "experiment_validation_summary"
+                    }
+                  },
+                  "Property": "bootstrap_iterations"
+                }
+              },
+              "queryRef": "experiment_validation_summary.bootstrap_iterations",
+              "nativeQueryRef": "bootstrap_iterations"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Bootstrap Mean"
+                }
+              },
+              "queryRef": "Metrics.Bootstrap Mean",
+              "nativeQueryRef": "Bootstrap Mean"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Bootstrap CI Lower"
+                }
+              },
+              "queryRef": "Metrics.Bootstrap CI Lower",
+              "nativeQueryRef": "Bootstrap CI Lower"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Bootstrap CI Upper"
+                }
+              },
+              "queryRef": "Metrics.Bootstrap CI Upper",
+              "nativeQueryRef": "Bootstrap CI Upper"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Контроль качества эксперимента'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

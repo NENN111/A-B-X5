@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "5dd26eba3454987b6bc7",
+  "position": {
+    "x": 24,
+    "y": 248,
+    "z": 6,
+    "height": 424,
+    "width": 600,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "strategy"
+                }
+              },
+              "queryRef": "business_scenarios.strategy",
+              "nativeQueryRef": "strategy",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Scenario Profit"
+                }
+              },
+              "queryRef": "Metrics.Scenario Profit",
+              "nativeQueryRef": "Scenario Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Scenario Cost"
+                }
+              },
+              "queryRef": "Metrics.Scenario Cost",
+              "nativeQueryRef": "Scenario Cost"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Target All vs Uplift Targeting'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -28,6 +28,7 @@ services:
       POSTGRES_HOST: postgres
     volumes:
       - ./data:/app/data
+      - ./powerbi:/app/powerbi
     depends_on:
       postgres:
         condition: service_healthy

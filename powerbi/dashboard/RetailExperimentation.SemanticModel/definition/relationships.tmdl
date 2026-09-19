@@ -1,0 +1,88 @@
+relationship fact_experiment-experiment
+	fromColumn: fact_experiment.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship experiment_results-experiment
+	fromColumn: experiment_results.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship experiment_validation_summary-experiment
+	fromColumn: experiment_validation_summary.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship segment_experiment_results-experiment
+	fromColumn: segment_experiment_results.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship uplift_model_results-experiment
+	fromColumn: uplift_model_results.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship uplift_predictions-experiment
+	fromColumn: uplift_predictions.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship uplift_deciles-experiment
+	fromColumn: uplift_deciles.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship business_scenarios-experiment
+	fromColumn: business_scenarios.experiment_key
+	toColumn: dim_experiment.experiment_key
+
+relationship uplift_model_results-model
+	fromColumn: uplift_model_results.model_name
+	toColumn: Model.model_name
+
+relationship uplift_predictions-model
+	fromColumn: uplift_predictions.model_name
+	toColumn: Model.model_name
+
+relationship uplift_deciles-model
+	fromColumn: uplift_deciles.model_name
+	toColumn: Model.model_name
+
+relationship business_scenarios-model
+	fromColumn: business_scenarios.model_name
+	toColumn: Model.model_name
+
+relationship 0409aeb1-1778-4b78-aba5-566fb485c22a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_experiment.experiment_start
+	toColumn: LocalDateTable_0d47ba3b-36dc-4d89-8993-bffde86f4708.Date
+
+relationship 8d37dd3a-c30d-410d-a92e-11faae6bbf34
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dim_experiment.loaded_at
+	toColumn: LocalDateTable_3fb24a32-3be4-46d3-b85a-cfe2ef5a9116.Date
+
+relationship 28bc7d5b-5b63-476f-a635-29390f5fc0eb
+	joinOnDateBehavior: datePartOnly
+	fromColumn: fact_experiment.loaded_at
+	toColumn: LocalDateTable_ebbf2328-c4a5-4adf-bc6c-f5359b69ec84.Date
+
+relationship 0fd34198-9544-4e27-b996-61651f2e49aa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: experiment_results.calculated_at
+	toColumn: LocalDateTable_1a37a748-e16b-46b7-9fcb-9b25fd8ec4a9.Date
+
+relationship 8f0ccb5b-5457-4196-b6bf-561050a9aab8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: experiment_validation_summary.calculated_at
+	toColumn: LocalDateTable_c8e3c05b-563a-4ab7-8913-98db561f0301.Date
+
+relationship 8b0ce41e-90b3-46ca-8887-212b7b30bf84
+	joinOnDateBehavior: datePartOnly
+	fromColumn: uplift_model_results.calculated_at
+	toColumn: LocalDateTable_34855fc4-8311-4ca8-b778-18f7c177e49c.Date
+
+relationship 35899e62-952b-4a68-b723-927826bd76ef
+	joinOnDateBehavior: datePartOnly
+	fromColumn: uplift_predictions.scored_at
+	toColumn: LocalDateTable_90efd511-0c6f-4352-8e02-f75434ec881c.Date
+
+relationship 127f2817-d0a5-41d6-a7a6-3952c10e4337
+	joinOnDateBehavior: datePartOnly
+	fromColumn: business_scenarios.calculated_at
+	toColumn: LocalDateTable_eef22a95-ccec-4423-ac57-d29d7900e80d.Date
+

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "9dd96f1da24230a30880",
+  "position": {
+    "x": 24,
+    "y": 96,
+    "z": 5,
+    "height": 128,
+    "width": 1216,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Customers Targeted"
+                }
+              },
+              "queryRef": "Metrics.Customers Targeted",
+              "nativeQueryRef": "Customers Targeted"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Target Share"
+                }
+              },
+              "queryRef": "Metrics.Target Share",
+              "nativeQueryRef": "Target Share"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Campaign Cost"
+                }
+              },
+              "queryRef": "Metrics.Campaign Cost",
+              "nativeQueryRef": "Campaign Cost"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Expected Incremental Conversions"
+                }
+              },
+              "queryRef": "Metrics.Expected Incremental Conversions",
+              "nativeQueryRef": "Expected Incremental Conversions"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Incremental Profit"
+                }
+              },
+              "queryRef": "Metrics.Incremental Profit",
+              "nativeQueryRef": "Incremental Profit"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "ROI"
+                }
+              },
+              "queryRef": "Metrics.ROI",
+              "nativeQueryRef": "ROI"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

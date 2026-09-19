@@ -1,0 +1,239 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "dfda26378dae526210c2",
+  "position": {
+    "x": 666.26139817629178,
+    "y": 494.10334346504561,
+    "z": 6,
+    "height": 177.99392097264439,
+    "width": 600.12158054711244,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Absolute Uplift"
+                }
+              },
+              "queryRef": "Metrics.Absolute Uplift",
+              "nativeQueryRef": "Absolute Uplift"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CI Lower"
+                }
+              },
+              "queryRef": "Metrics.CI Lower",
+              "nativeQueryRef": "CI Lower"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "CI Upper"
+                }
+              },
+              "queryRef": "Metrics.CI Upper",
+              "nativeQueryRef": "CI Upper"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Achieved Power"
+                }
+              },
+              "queryRef": "Metrics.Achieved Power",
+              "nativeQueryRef": "Achieved Power"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "MDE"
+                }
+              },
+              "queryRef": "Metrics.MDE",
+              "nativeQueryRef": "MDE"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "experiment_results"
+                    }
+                  },
+                  "Property": "statistically_significant"
+                }
+              },
+              "queryRef": "experiment_results.statistically_significant",
+              "nativeQueryRef": "statistically_significant"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Статистический вывод'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "c8e8d39553137e6ed69b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Absolute Uplift"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "898e5365dc669354b910",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "CI Lower"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "da3b60000b6b1e3851db",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "CI Upper"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "9f856e1ec6107547125d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Achieved Power"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "3e9621fe39030717ac90",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "MDE"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "cd325faf0c80b2234eb3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "experiment_results"
+              }
+            },
+            "Property": "statistically_significant"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

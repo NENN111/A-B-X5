@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "e6aaefc07ced60b1fbc1",
+  "position": {
+    "x": 24,
+    "y": 96,
+    "z": 4,
+    "height": 112,
+    "width": 400,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Segment Users"
+                }
+              },
+              "queryRef": "Metrics.Segment Users",
+              "nativeQueryRef": "Segment Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Segment Uplift"
+                }
+              },
+              "queryRef": "Metrics.Segment Uplift",
+              "nativeQueryRef": "Segment Uplift"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

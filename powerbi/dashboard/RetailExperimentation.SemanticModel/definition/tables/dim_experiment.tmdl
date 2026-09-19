@@ -1,0 +1,63 @@
+table dim_experiment
+	lineageTag: 1b2b2952-c84c-49ef-8764-242e60d1cc3b
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 2ec6883f-adfb-4187-969b-b1bac05336ae
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column experiment_name
+		dataType: string
+		lineageTag: 8a6ecffd-69e4-4fe8-b135-9f64ab8ee02c
+		summarizeBy: none
+		sourceColumn: experiment_name
+
+	column experiment_start
+		dataType: dateTime
+		lineageTag: ea9faafa-0430-4701-8d6d-88bbff4cb23d
+		summarizeBy: none
+		sourceColumn: experiment_start
+
+		variation Изменение
+			isDefault
+			relationship: 0409aeb1-1778-4b78-aba5-566fb485c22a
+			defaultHierarchy: LocalDateTable_0d47ba3b-36dc-4d89-8993-bffde86f4708.'Иерархия дат'
+
+	column expected_treatment_share
+		dataType: double
+		lineageTag: df9b8e87-3d30-430e-b74b-bce004c21229
+		summarizeBy: sum
+		sourceColumn: expected_treatment_share
+
+		annotation SummarizationSetBy = Automatic
+
+	column description
+		dataType: string
+		lineageTag: d093a819-094f-40b6-b699-c8f4c7d5c669
+		summarizeBy: none
+		sourceColumn: description
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0408ec97-0080-4bf3-956b-6415b766c15d
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		variation Изменение
+			isDefault
+			relationship: 8d37dd3a-c30d-410d-a92e-11faae6bbf34
+			defaultHierarchy: LocalDateTable_3fb24a32-3be4-46d3-b85a-cfe2ef5a9116.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dim_experiment = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="dim_experiment"]}[Data]
+				in
+					Data
+

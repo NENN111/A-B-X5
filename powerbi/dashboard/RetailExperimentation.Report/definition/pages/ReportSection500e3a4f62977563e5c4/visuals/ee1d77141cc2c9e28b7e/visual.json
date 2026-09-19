@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "ee1d77141cc2c9e28b7e",
+  "position": {
+    "x": 640,
+    "y": 248,
+    "z": 7,
+    "height": 424,
+    "width": 600,
+    "tabOrder": 7
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "scenario_name"
+                }
+              },
+              "queryRef": "business_scenarios.scenario_name",
+              "nativeQueryRef": "scenario_name"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "strategy"
+                }
+              },
+              "queryRef": "business_scenarios.strategy",
+              "nativeQueryRef": "strategy"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "targeting_threshold"
+                }
+              },
+              "queryRef": "business_scenarios.targeting_threshold",
+              "nativeQueryRef": "targeting_threshold"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "communication_cost"
+                }
+              },
+              "queryRef": "business_scenarios.communication_cost",
+              "nativeQueryRef": "communication_cost"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "profit_per_conversion"
+                }
+              },
+              "queryRef": "business_scenarios.profit_per_conversion",
+              "nativeQueryRef": "profit_per_conversion"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "target_share"
+                }
+              },
+              "queryRef": "business_scenarios.target_share",
+              "nativeQueryRef": "target_share"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "business_scenarios"
+                    }
+                  },
+                  "Property": "roi"
+                }
+              },
+              "queryRef": "business_scenarios.roi",
+              "nativeQueryRef": "roi"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Сохранённые Python-сценарии'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

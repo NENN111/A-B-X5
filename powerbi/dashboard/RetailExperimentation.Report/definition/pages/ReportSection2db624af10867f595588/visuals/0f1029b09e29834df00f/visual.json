@@ -1,0 +1,165 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "0f1029b09e29834df00f",
+  "position": {
+    "x": 640,
+    "y": 232,
+    "z": 6,
+    "height": 440,
+    "width": 600,
+    "tabOrder": 6
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "segment"
+                }
+              },
+              "queryRef": "segment_experiment_results.segment",
+              "nativeQueryRef": "segment"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "control_size"
+                }
+              },
+              "queryRef": "segment_experiment_results.control_size",
+              "nativeQueryRef": "control_size"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "treatment_size"
+                }
+              },
+              "queryRef": "segment_experiment_results.treatment_size",
+              "nativeQueryRef": "treatment_size"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "control_cr"
+                }
+              },
+              "queryRef": "segment_experiment_results.control_cr",
+              "nativeQueryRef": "control_cr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "treatment_cr"
+                }
+              },
+              "queryRef": "segment_experiment_results.treatment_cr",
+              "nativeQueryRef": "treatment_cr"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "adjusted_p_value"
+                }
+              },
+              "queryRef": "segment_experiment_results.adjusted_p_value",
+              "nativeQueryRef": "adjusted_p_value"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "segment_experiment_results"
+                    }
+                  },
+                  "Property": "significant_adjusted"
+                }
+              },
+              "queryRef": "segment_experiment_results.significant_adjusted",
+              "nativeQueryRef": "significant_adjusted"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "columnHeaders": [
+        {
+          "properties": {
+            "columnAdjustment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'growToFit'"
+                }
+              }
+            },
+            "autoSizeColumnWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Сегменты с BH-поправкой'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

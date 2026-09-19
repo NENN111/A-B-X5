@@ -1,0 +1,68 @@
+table uplift_predictions
+	lineageTag: 618856b2-a159-4763-8286-3cf5410cd3d9
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 440963a8-c4e0-47f1-8f67-b25bf72df401
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column customer_id
+		dataType: string
+		lineageTag: a6bced28-4f68-4768-86f5-aeac7dcbab4b
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column model_name
+		dataType: string
+		lineageTag: c9c0e392-fc29-481a-8da5-09d2408c99b2
+		summarizeBy: none
+		sourceColumn: model_name
+
+	column probability_control
+		dataType: double
+		lineageTag: c53ec8f1-cff8-41df-9b2a-5bba623bd5b7
+		summarizeBy: sum
+		sourceColumn: probability_control
+
+		annotation SummarizationSetBy = Automatic
+
+	column probability_treatment
+		dataType: double
+		lineageTag: e6f939ea-cf49-4a2c-aed4-682610ddee0f
+		summarizeBy: sum
+		sourceColumn: probability_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column predicted_uplift
+		dataType: double
+		lineageTag: a90bed7c-7a81-427b-a4b1-b483291d0914
+		summarizeBy: sum
+		sourceColumn: predicted_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column scored_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e13a069a-640d-480a-ad44-f7afa23f95e8
+		summarizeBy: none
+		sourceColumn: scored_at
+
+		variation Изменение
+			isDefault
+			relationship: 35899e62-952b-4a68-b723-927826bd76ef
+			defaultHierarchy: LocalDateTable_90efd511-0c6f-4352-8e02-f75434ec881c.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition uplift_predictions = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="uplift_predictions"]}[Data]
+				in
+					Data
+

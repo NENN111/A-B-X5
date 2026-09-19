@@ -1,0 +1,13 @@
+table 'Targeting Threshold'
+	lineageTag: 9703b7c7-97b2-4d50-a044-8c439cbfe185
+
+	column 'Targeting Threshold'
+		dataType: double
+		lineageTag: 91ac73e0-e08b-4236-9f80-581978d98968
+		summarizeBy: none
+		sourceColumn: [Value]
+
+	partition 'Targeting Threshold' = calculated
+		mode: import
+		source = GENERATESERIES(-0.20, 0.50, 0.01)
+

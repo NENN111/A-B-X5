@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "d71a69026acef9fa7f95",
+  "position": {
+    "x": 24,
+    "y": 96,
+    "z": 4,
+    "height": 112,
+    "width": 1216,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Model AUUC"
+                }
+              },
+              "queryRef": "Metrics.Model AUUC",
+              "nativeQueryRef": "Model AUUC"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Qini Coefficient"
+                }
+              },
+              "queryRef": "Metrics.Qini Coefficient",
+              "nativeQueryRef": "Qini Coefficient"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Holdout Customers"
+                }
+              },
+              "queryRef": "Metrics.Holdout Customers",
+              "nativeQueryRef": "Holdout Customers"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Average Predicted Uplift"
+                }
+              },
+              "queryRef": "Metrics.Average Predicted Uplift",
+              "nativeQueryRef": "Average Predicted Uplift"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

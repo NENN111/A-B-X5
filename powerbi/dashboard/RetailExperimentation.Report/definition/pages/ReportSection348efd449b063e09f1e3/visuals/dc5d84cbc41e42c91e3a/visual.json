@@ -1,0 +1,167 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "dc5d84cbc41e42c91e3a",
+  "position": {
+    "x": 57.38601823708207,
+    "y": 223.70820668693011,
+    "z": 4,
+    "height": 111.85410334346506,
+    "width": 1133.130699088146,
+    "tabOrder": 4
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Control CR"
+                }
+              },
+              "queryRef": "Metrics.Control CR",
+              "nativeQueryRef": "Control CR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Treatment CR"
+                }
+              },
+              "queryRef": "Metrics.Treatment CR",
+              "nativeQueryRef": "Treatment CR"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Absolute Uplift"
+                }
+              },
+              "queryRef": "Metrics.Absolute Uplift",
+              "nativeQueryRef": "Absolute Uplift"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Relative Uplift"
+                }
+              },
+              "queryRef": "Metrics.Relative Uplift",
+              "nativeQueryRef": "Relative Uplift"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "P-value"
+                }
+              },
+              "queryRef": "Metrics.P-value",
+              "nativeQueryRef": "P-value"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "fbe2bfdee3be027ded4b",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Control CR"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6d9d24e9b461cbcb98e0",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Treatment CR"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "82eebe0259909b4c6870",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Absolute Uplift"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "351f01bf822d7671c955",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Relative Uplift"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c24c9d509960960b0900",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "P-value"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

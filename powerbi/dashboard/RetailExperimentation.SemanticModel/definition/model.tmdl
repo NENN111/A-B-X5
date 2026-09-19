@@ -1,0 +1,39 @@
+model Model
+	culture: ru-RU
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
+	sourceQueryCulture: ru-RU
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["dim_experiment","fact_experiment","experiment_results","experiment_validation_summary","segment_experiment_results","uplift_model_results","uplift_predictions","uplift_deciles","business_scenarios","Server","Database"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table dim_experiment
+ref table fact_experiment
+ref table experiment_results
+ref table experiment_validation_summary
+ref table segment_experiment_results
+ref table uplift_model_results
+ref table uplift_predictions
+ref table uplift_deciles
+ref table business_scenarios
+ref table Model
+ref table Metrics
+ref table 'Communication Cost'
+ref table 'Profit per Conversion'
+ref table 'Targeting Threshold'
+ref table DateTableTemplate_a7744750-6e32-4e5d-9224-a9dcdb726759
+ref table LocalDateTable_0d47ba3b-36dc-4d89-8993-bffde86f4708
+ref table LocalDateTable_3fb24a32-3be4-46d3-b85a-cfe2ef5a9116
+ref table LocalDateTable_ebbf2328-c4a5-4adf-bc6c-f5359b69ec84
+ref table LocalDateTable_1a37a748-e16b-46b7-9fcb-9b25fd8ec4a9
+ref table LocalDateTable_c8e3c05b-563a-4ab7-8913-98db561f0301
+ref table LocalDateTable_34855fc4-8311-4ca8-b778-18f7c177e49c
+ref table LocalDateTable_90efd511-0c6f-4352-8e02-f75434ec881c
+ref table LocalDateTable_eef22a95-ccec-4423-ac57-d29d7900e80d
+

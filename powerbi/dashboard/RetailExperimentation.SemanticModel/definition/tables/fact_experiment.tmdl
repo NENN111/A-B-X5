@@ -1,0 +1,54 @@
+table fact_experiment
+	lineageTag: 31607988-7d8d-4e45-9d14-44f519cc507f
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 0d100530-2c82-4b95-a442-7c40131f7204
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column customer_id
+		dataType: string
+		lineageTag: 99d851b7-d6a5-4b68-865a-79752fc036be
+		summarizeBy: none
+		sourceColumn: customer_id
+
+	column treatment
+		dataType: int64
+		lineageTag: b97f80ea-e4dd-45c5-a0db-41d3206ce7f5
+		summarizeBy: sum
+		sourceColumn: treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column target
+		dataType: int64
+		lineageTag: 8f61ce02-f46c-48fd-9e7a-f98f6d32a2a3
+		summarizeBy: sum
+		sourceColumn: target
+
+		annotation SummarizationSetBy = Automatic
+
+	column loaded_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e89f814b-056b-4324-bba5-acc04609127b
+		summarizeBy: none
+		sourceColumn: loaded_at
+
+		variation Изменение
+			isDefault
+			relationship: 28bc7d5b-5b63-476f-a635-29390f5fc0eb
+			defaultHierarchy: LocalDateTable_ebbf2328-c4a5-4adf-bc6c-f5359b69ec84.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fact_experiment = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="fact_experiment"]}[Data]
+				in
+					Data
+

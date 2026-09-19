@@ -1,0 +1,84 @@
+table uplift_deciles
+	lineageTag: d7594325-d4a5-427f-8f26-45683a16d4b8
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 00e02784-4a54-481f-b7c7-ff2c47d7f7f2
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column model_name
+		dataType: string
+		lineageTag: 97703182-7f0c-4db3-98ce-f3eb324023a9
+		summarizeBy: none
+		sourceColumn: model_name
+
+	column decile
+		dataType: int64
+		lineageTag: 83a4fb38-95f7-404d-ae52-a16a602ace34
+		summarizeBy: none
+		sourceColumn: decile
+
+	column customers
+		dataType: int64
+		lineageTag: 0a9929a8-37a8-4b87-8d8f-54f384a1e6cf
+		summarizeBy: none
+		sourceColumn: customers
+
+	column control_size
+		dataType: int64
+		lineageTag: 215deb5e-4004-4153-b503-f83a50cd1e0c
+		summarizeBy: none
+		sourceColumn: control_size
+
+	column treatment_size
+		dataType: int64
+		lineageTag: a59646a4-9bdc-44ca-b49d-e4f4028c2628
+		summarizeBy: none
+		sourceColumn: treatment_size
+
+	column avg_predicted_uplift
+		dataType: double
+		lineageTag: 7a06b760-9813-4cd1-9b86-2bea977fdfca
+		summarizeBy: none
+		sourceColumn: avg_predicted_uplift
+
+	column treatment_cr
+		dataType: double
+		lineageTag: ee237042-69c3-4bc3-91ac-dcffcf73bb16
+		summarizeBy: none
+		sourceColumn: treatment_cr
+
+	column control_cr
+		dataType: double
+		lineageTag: 08fb9895-e727-4023-b6b0-c676fca2ceaf
+		summarizeBy: none
+		sourceColumn: control_cr
+
+	column observed_uplift
+		dataType: double
+		lineageTag: 32783d0e-4671-4f2e-bc72-a54a13b6f2ea
+		summarizeBy: none
+		sourceColumn: observed_uplift
+
+	column incremental_purchases
+		dataType: double
+		lineageTag: 6940d1f1-264a-45ad-9d17-fac41e8e2821
+		summarizeBy: none
+		sourceColumn: incremental_purchases
+
+	column cumulative_incremental_purchases
+		dataType: double
+		lineageTag: 86762545-2447-4285-bde6-5e9c9fcf58cf
+		summarizeBy: none
+		sourceColumn: cumulative_incremental_purchases
+
+	partition uplift_deciles = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="uplift_deciles"]}[Data]
+				in
+					Data
+

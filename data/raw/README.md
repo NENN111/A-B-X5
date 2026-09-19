@@ -1,5 +1,10 @@
 # Исходные данные RetailHero
 
+При стандартном развёртывании файлы скачиваются автоматически командой
+`python scripts/download_retailhero.py` с публичного зеркала набора
+[`pytorch-lifestream/retailhero-uplift`](https://huggingface.co/datasets/pytorch-lifestream/retailhero-uplift).
+Страница исходного соревнования: [ODS X5 RetailHero](https://ods.ai/competitions/x5-retailhero-uplift-modeling/data).
+
 Поместите оригинальные файлы X5 RetailHero Uplift в этот каталог. Загрузчик ожидает ровно по одному файлу каждой сущности в формате CSV, CSV.GZ или Parquet:
 
 - `clients.csv` / `clients.csv.gz` / `clients.parquet`;

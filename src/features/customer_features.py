@@ -125,7 +125,13 @@ def _prepare_clients(
     _assert_unique(clients, mapping.client_id, "clients")
     expressions = [pl.col(mapping.client_id).alias("client_id")]
     if mapping.age:
-        expressions.append(pl.col(mapping.age).cast(pl.Float64).alias("age"))
+        age = pl.col(mapping.age).cast(pl.Float64)
+        expressions.append(
+            pl.when(age.is_between(0, 120, closed="both"))
+            .then(age)
+            .otherwise(None)
+            .alias("age")
+        )
     elif mapping.birth_date:
         birth_dtype = clients.collect_schema()[mapping.birth_date]
         birth_date = pl.col(mapping.birth_date)

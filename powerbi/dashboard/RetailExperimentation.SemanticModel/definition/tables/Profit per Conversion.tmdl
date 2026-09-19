@@ -1,0 +1,13 @@
+table 'Profit per Conversion'
+	lineageTag: 6f0a0b32-3e52-4587-8c44-d0780fc30215
+
+	column 'Profit per Conversion'
+		dataType: double
+		lineageTag: 20aaa90a-b483-47d4-8ce5-066095742e7e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+	partition 'Profit per Conversion' = calculated
+		mode: import
+		source = GENERATESERIES(0, 1000, 10)
+

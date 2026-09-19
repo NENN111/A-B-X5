@@ -1,0 +1,154 @@
+table business_scenarios
+	lineageTag: 9dcd1a82-2694-4006-bbc4-d16cc1ff0f0a
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 13862608-d5b2-4cf1-807e-1678dd761d5a
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column model_name
+		dataType: string
+		lineageTag: e9754f04-ad07-405d-8e58-41539912236e
+		summarizeBy: none
+		sourceColumn: model_name
+
+	column scenario_name
+		dataType: string
+		lineageTag: b45c2d49-db6a-4a4d-9562-0ecfc6479779
+		summarizeBy: none
+		sourceColumn: scenario_name
+
+	column strategy
+		dataType: string
+		lineageTag: cad9e146-fd0d-480a-a25e-06806be61758
+		summarizeBy: none
+		sourceColumn: strategy
+
+	column customers_total
+		dataType: int64
+		lineageTag: 49941ca2-6741-4bde-b730-405af2848eae
+		summarizeBy: sum
+		sourceColumn: customers_total
+
+		annotation SummarizationSetBy = Automatic
+
+	column customers_targeted
+		dataType: int64
+		lineageTag: c846e940-01c9-4f8a-adaf-6cf16730ef6d
+		summarizeBy: sum
+		sourceColumn: customers_targeted
+
+		annotation SummarizationSetBy = Automatic
+
+	column target_share
+		dataType: double
+		lineageTag: 46cea01e-9696-4525-9767-0c2160310a15
+		summarizeBy: sum
+		sourceColumn: target_share
+
+		annotation SummarizationSetBy = Automatic
+
+	column targeting_threshold
+		dataType: double
+		lineageTag: 09a3bc07-0acc-462f-8cda-f832889a4f64
+		summarizeBy: sum
+		sourceColumn: targeting_threshold
+
+		annotation SummarizationSetBy = Automatic
+
+	column communication_cost
+		dataType: double
+		lineageTag: ae70d4b9-df06-472a-8116-02f6c3212d83
+		summarizeBy: sum
+		sourceColumn: communication_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit_per_conversion
+		dataType: double
+		lineageTag: f2181962-1af6-4794-8908-94f079d834ce
+		summarizeBy: sum
+		sourceColumn: profit_per_conversion
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column marketing_cost
+		dataType: double
+		lineageTag: 861fd911-1d35-41d7-be73-4e65bf7fb7ee
+		summarizeBy: sum
+		sourceColumn: marketing_cost
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column incremental_conversions
+		dataType: double
+		lineageTag: 679bcccc-af2d-4296-9d0d-89852c20df95
+		summarizeBy: sum
+		sourceColumn: incremental_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column incremental_profit
+		dataType: double
+		lineageTag: 8f90bbe2-11b7-42f0-b5fa-dc31599e00a5
+		summarizeBy: sum
+		sourceColumn: incremental_profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column roi
+		dataType: double
+		lineageTag: 8fd1f21e-271a-467d-acce-90e03bdfd6e9
+		summarizeBy: sum
+		sourceColumn: roi
+
+		annotation SummarizationSetBy = Automatic
+
+	column scenario_analysis
+		dataType: boolean
+		lineageTag: 5f3a1903-6528-41dd-9385-cdc488bfd65f
+		summarizeBy: none
+		sourceColumn: scenario_analysis
+
+	column incremental_value
+		dataType: double
+		lineageTag: fe6a4ae5-f66f-448d-ab2f-c24258ba2660
+		summarizeBy: sum
+		sourceColumn: incremental_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column calculated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2c7e6f04-d100-4495-ac9d-32d856556c6c
+		summarizeBy: none
+		sourceColumn: calculated_at
+
+		variation Изменение
+			isDefault
+			relationship: 127f2817-d0a5-41d6-a7a6-3952c10e4337
+			defaultHierarchy: LocalDateTable_eef22a95-ccec-4423-ac57-d29d7900e80d.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition business_scenarios = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="business_scenarios"]}[Data]
+				in
+					Data
+

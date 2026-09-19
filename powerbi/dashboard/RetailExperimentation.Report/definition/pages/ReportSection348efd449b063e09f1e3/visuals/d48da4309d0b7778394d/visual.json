@@ -1,0 +1,111 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "d48da4309d0b7778394d",
+  "position": {
+    "x": 173.13069908814592,
+    "y": 97.264437689969611,
+    "z": 3,
+    "height": 111.85410334346506,
+    "width": 901.64133738601822,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Control Users"
+                }
+              },
+              "queryRef": "Metrics.Control Users",
+              "nativeQueryRef": "Control Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Treatment Users"
+                }
+              },
+              "queryRef": "Metrics.Treatment Users",
+              "nativeQueryRef": "Treatment Users"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Conversions"
+                }
+              },
+              "queryRef": "Metrics.Conversions",
+              "nativeQueryRef": "Conversions"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "75f73f20eb7255879546",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Control Users"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "56007cd91aae7c4ad937",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Treatment Users"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "1f8f8b7d0008ae927350",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Conversions"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

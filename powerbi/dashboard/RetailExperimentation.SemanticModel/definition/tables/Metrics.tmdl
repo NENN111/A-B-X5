@@ -1,0 +1,213 @@
+table Metrics
+	lineageTag: eee5250a-72ac-4c84-a160-249b307b38f4
+
+	/// Users
+	measure Users = DISTINCTCOUNT(fact_experiment[customer_id])
+		formatString: #,##0
+		lineageTag: 5430f492-9115-4f70-a499-2e5d9eccbcb2
+
+	/// Control Users
+	measure 'Control Users' = CALCULATE([Users], fact_experiment[treatment] = 0)
+		formatString: #,##0
+		lineageTag: c882f546-2553-470a-8dee-f40489c79452
+
+	/// Treatment Users
+	measure 'Treatment Users' = CALCULATE([Users], fact_experiment[treatment] = 1)
+		formatString: #,##0
+		lineageTag: f695ad8b-5855-43cd-b376-fe62ab12a5fa
+
+	/// Conversions
+	measure Conversions = SUM(fact_experiment[target])
+		formatString: #,##0
+		lineageTag: cdc4f101-2048-4636-a81d-016d4f57c0f7
+
+	/// Control CR
+	measure 'Control CR' = DIVIDE(CALCULATE([Conversions], fact_experiment[treatment] = 0), [Control Users])
+		formatString: 0.0%
+		lineageTag: f626c255-fbdb-462e-a131-abf7bfa42939
+
+	/// Treatment CR
+	measure 'Treatment CR' = DIVIDE(CALCULATE([Conversions], fact_experiment[treatment] = 1), [Treatment Users])
+		formatString: 0.0%
+		lineageTag: 1778899d-c986-4939-9677-fbf87af3e8df
+
+	/// Conversion Rate
+	measure 'Conversion Rate' = DIVIDE([Conversions], [Users])
+		formatString: 0.0%
+		lineageTag: bfad9c0f-0c64-4a8f-8025-9742d827ac27
+
+	/// Absolute Uplift
+	measure 'Absolute Uplift' = [Treatment CR] - [Control CR]
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 22ad1ba3-4172-4035-bddc-3268fe1f0413
+
+	/// Relative Uplift
+	measure 'Relative Uplift' = DIVIDE([Absolute Uplift], [Control CR])
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: 1d399147-90fb-412e-8215-178ee30d32e5
+
+	/// P-value
+	measure P-value = SELECTEDVALUE(experiment_results[p_value])
+		formatString: 0.0000
+		lineageTag: 582b39a8-8639-482c-a155-4d0b0c64da95
+
+	/// CI Lower
+	measure 'CI Lower' = SELECTEDVALUE(experiment_results[ci_lower])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 42095b87-1ccb-4e1d-af3f-0701725aff81
+
+	/// CI Upper
+	measure 'CI Upper' = SELECTEDVALUE(experiment_results[ci_upper])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 0b1659bb-67b8-4134-86fd-1ad3273fd3bc
+
+	/// Achieved Power
+	measure 'Achieved Power' = SELECTEDVALUE(experiment_results[achieved_power])
+		formatString: 0.0%
+		lineageTag: bee0fdd4-4656-4c1d-a55d-95eccc263e28
+
+	/// MDE
+	measure MDE = SELECTEDVALUE(experiment_results[mde_absolute])
+		formatString: 0.00%
+		lineageTag: c9d19a7e-2b39-4450-9b0c-444b2bd735a6
+
+	/// SRM P-value
+	measure 'SRM P-value' = SELECTEDVALUE(experiment_validation_summary[srm_p_value])
+		formatString: 0.0000
+		lineageTag: a8f68845-535d-45f0-83d8-8f2c08526d2a
+
+	/// A/A FPR
+	measure 'A/A FPR' = SELECTEDVALUE(experiment_validation_summary[aa_false_positive_rate])
+		formatString: 0.0%
+		lineageTag: ecb907a9-44e0-43bd-95cb-813a7f2ebbe9
+
+	/// Bootstrap Mean
+	measure 'Bootstrap Mean' = SELECTEDVALUE(experiment_validation_summary[bootstrap_mean_uplift])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: f183bd57-5bc3-4568-ad60-978b11f35dd1
+
+	/// Bootstrap CI Lower
+	measure 'Bootstrap CI Lower' = SELECTEDVALUE(experiment_validation_summary[bootstrap_ci_lower])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 9c97da4d-3fe0-46b6-ae48-1eac712d8c5a
+
+	/// Bootstrap CI Upper
+	measure 'Bootstrap CI Upper' = SELECTEDVALUE(experiment_validation_summary[bootstrap_ci_upper])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 5bd460fb-9b56-42a9-be31-04359d6046a3
+
+	/// Segment Uplift
+	measure 'Segment Uplift' = MAX(segment_experiment_results[absolute_uplift])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: f25a1a2e-7d2e-4ec4-b548-5ffacdd1c425
+
+	/// Segment Users
+	measure 'Segment Users' = SUM(segment_experiment_results[control_size]) + SUM(segment_experiment_results[treatment_size])
+		formatString: #,##0
+		lineageTag: fcf403f7-f1aa-448d-bb9d-aad6233c417a
+
+	/// Model AUUC
+	measure 'Model AUUC' = MAX(uplift_model_results[auuc])
+		formatString: 0.0000
+		lineageTag: 2642d72b-2a43-489f-bbd1-e80e3903493b
+
+	/// Qini Coefficient
+	measure 'Qini Coefficient' = MAX(uplift_model_results[qini_coefficient])
+		formatString: #,##0.00
+		lineageTag: d0cb4e16-1eb2-4cd7-a43d-cc518ebb1cca
+
+	/// Holdout Customers
+	measure 'Holdout Customers' = MAX(uplift_model_results[holdout_customers])
+		formatString: #,##0
+		lineageTag: ed88a217-9c66-4ff5-88c4-d461a5f70872
+
+	/// Scored Customers
+	measure 'Scored Customers' = DISTINCTCOUNT(uplift_predictions[customer_id])
+		formatString: #,##0
+		lineageTag: 5dc229b0-037b-4b5e-b2d8-64666aa93999
+
+	/// Average Predicted Uplift
+	measure 'Average Predicted Uplift' = AVERAGE(uplift_predictions[predicted_uplift])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: d47f6bbd-dcf3-4ba3-afa0-c33a442fdd5b
+
+	/// Observed Decile Uplift
+	measure 'Observed Decile Uplift' = MAX(uplift_deciles[observed_uplift])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 681918b7-7405-4255-8e62-2920d40f5d20
+
+	/// Predicted Decile Uplift
+	measure 'Predicted Decile Uplift' = MAX(uplift_deciles[avg_predicted_uplift])
+		formatString: +0.00%;-0.00%;0.00%
+		lineageTag: 18aa7548-6ce1-44a8-8b66-7cf47860ca30
+
+	/// Cumulative Incremental
+	measure 'Cumulative Incremental' = MAX(uplift_deciles[cumulative_incremental_purchases])
+		formatString: #,##0.0
+		lineageTag: 175e67bf-994c-4f77-8e4e-966851b8260e
+
+	/// Selected Communication Cost
+	measure 'Selected Communication Cost' = SELECTEDVALUE('Communication Cost'[Communication Cost], 2)
+		formatString: #,##0.00
+		lineageTag: 91de1752-27dc-4d25-8283-8fca896585fe
+
+	/// Selected Profit per Conversion
+	measure 'Selected Profit per Conversion' = SELECTEDVALUE('Profit per Conversion'[Profit per Conversion], 100)
+		formatString: #,##0.00
+		lineageTag: 8ab294cd-1ced-4e3e-af08-e57766a48132
+
+	/// Selected Targeting Threshold
+	measure 'Selected Targeting Threshold' = SELECTEDVALUE('Targeting Threshold'[Targeting Threshold], 0.02)
+		formatString: 0.0%
+		lineageTag: 2d128a5b-acd1-4e97-aaf5-c420ac099b2f
+
+	/// Customers Targeted
+	measure 'Customers Targeted' = VAR T=[Selected Targeting Threshold] RETURN CALCULATE(DISTINCTCOUNT(uplift_predictions[customer_id]), KEEPFILTERS(uplift_predictions[predicted_uplift] > T))
+		formatString: #,##0
+		lineageTag: 1eb5070d-6720-46a4-a551-bffa91651272
+
+	/// Target Share
+	measure 'Target Share' = DIVIDE([Customers Targeted], [Scored Customers])
+		formatString: 0.0%
+		lineageTag: c61729f6-e09d-41df-8d77-b7ab3a326cb7
+
+	/// Expected Incremental Conversions
+	measure 'Expected Incremental Conversions' = VAR T=[Selected Targeting Threshold] RETURN CALCULATE(SUM(uplift_predictions[predicted_uplift]), KEEPFILTERS(uplift_predictions[predicted_uplift] > T))
+		formatString: #,##0.0
+		lineageTag: 6480be47-7d9c-43f6-be5c-94a33699bb9a
+
+	/// Campaign Cost
+	measure 'Campaign Cost' = [Customers Targeted] * [Selected Communication Cost]
+		formatString: #,##0.00
+		lineageTag: f60789d0-017d-4693-bb20-4a7e0de22a49
+
+	/// Incremental Profit
+	measure 'Incremental Profit' = [Expected Incremental Conversions] * [Selected Profit per Conversion] - [Campaign Cost]
+		formatString: #,##0.00;(#,##0.00)
+		lineageTag: e7414851-df0d-422e-990f-439255510a32
+
+	/// ROI
+	measure ROI = DIVIDE([Incremental Profit], [Campaign Cost])
+		formatString: +0.0%;-0.0%;0.0%
+		lineageTag: d586ae41-44f0-4556-a18c-a29cd4dfc211
+
+	/// Scenario Profit
+	measure 'Scenario Profit' = MAX(business_scenarios[incremental_profit])
+		formatString: #,##0.00;(#,##0.00)
+		lineageTag: be33af6d-4f86-4416-b777-eeda68772e86
+
+	/// Scenario Cost
+	measure 'Scenario Cost' = MAX(business_scenarios[marketing_cost])
+		formatString: #,##0.00
+		lineageTag: e01d86e7-1a0c-41d9-8475-c879e4acafc3
+
+	column Dummy
+		dataType: int64
+		isHidden
+		lineageTag: 9b317316-6809-475e-a8db-1724440f9701
+		sourceColumn: [Dummy]
+
+	partition Metrics = calculated
+		mode: import
+		source = ROW("Dummy", 1)
+

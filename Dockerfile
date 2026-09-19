@@ -11,6 +11,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY src ./src
 COPY sql ./sql
-COPY data/raw/README.md ./data/raw/README.md
+COPY config ./config
+COPY scripts ./scripts
+COPY powerbi ./powerbi
 
 CMD ["python", "-m", "src.data.loader"]

@@ -1,0 +1,95 @@
+table uplift_model_results
+	lineageTag: b6a19ec5-8bc8-4cad-bbed-f257c61fa4e7
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 7dc54c37-e5f3-48ae-a6e1-e35b46378e09
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column model_name
+		dataType: string
+		lineageTag: dea54352-2c66-4f7b-a0df-8ebba5847bd3
+		summarizeBy: none
+		sourceColumn: model_name
+
+	column train_customers
+		dataType: int64
+		lineageTag: dc4aa35c-8d73-42a2-a70a-e2ce9604c4e7
+		summarizeBy: sum
+		sourceColumn: train_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column holdout_customers
+		dataType: int64
+		lineageTag: f828f914-cb13-4b1d-bace-c0d3e47d995d
+		summarizeBy: sum
+		sourceColumn: holdout_customers
+
+		annotation SummarizationSetBy = Automatic
+
+	column auuc
+		dataType: double
+		lineageTag: 0fb7fc1e-2f7b-4b34-aedf-e9060d1cab14
+		summarizeBy: sum
+		sourceColumn: auuc
+
+		annotation SummarizationSetBy = Automatic
+
+	column qini_coefficient
+		dataType: double
+		lineageTag: 21def6b0-5eff-4d0d-ac2e-dab55e45009e
+		summarizeBy: sum
+		sourceColumn: qini_coefficient
+
+		annotation SummarizationSetBy = Automatic
+
+	column overall_observed_uplift
+		dataType: double
+		lineageTag: 25b3c7e5-dadf-40b7-9077-64719d074c4a
+		summarizeBy: sum
+		sourceColumn: overall_observed_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column final_incremental_purchases
+		dataType: double
+		lineageTag: f0cf33da-dd1d-4dfe-ad27-7f0a742315af
+		summarizeBy: sum
+		sourceColumn: final_incremental_purchases
+
+		annotation SummarizationSetBy = Automatic
+
+	column random_state
+		dataType: int64
+		formatString: 0
+		lineageTag: e06e1f8e-b90c-432e-ab5c-b3787ac7ebdd
+		summarizeBy: sum
+		sourceColumn: random_state
+
+		annotation SummarizationSetBy = Automatic
+
+	column calculated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ac570344-d20b-41d2-87ef-acdb55e749f9
+		summarizeBy: none
+		sourceColumn: calculated_at
+
+		variation Изменение
+			isDefault
+			relationship: 8b0ce41e-90b3-46ca-8887-212b7b30bf84
+			defaultHierarchy: LocalDateTable_34855fc4-8311-4ca8-b778-18f7c177e49c.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition uplift_model_results = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="uplift_model_results"]}[Data]
+				in
+					Data
+

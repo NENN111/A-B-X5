@@ -1,0 +1,79 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.9.0/schema.json",
+  "name": "bb8908971a82b47539b0",
+  "position": {
+    "x": 24,
+    "y": 96,
+    "z": 3,
+    "height": 112,
+    "width": 1216,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Achieved Power"
+                }
+              },
+              "queryRef": "Metrics.Achieved Power",
+              "nativeQueryRef": "Achieved Power"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "MDE"
+                }
+              },
+              "queryRef": "Metrics.MDE",
+              "nativeQueryRef": "MDE"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "SRM P-value"
+                }
+              },
+              "queryRef": "Metrics.SRM P-value",
+              "nativeQueryRef": "SRM P-value"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "A/A FPR"
+                }
+              },
+              "queryRef": "Metrics.A/A FPR",
+              "nativeQueryRef": "A/A FPR"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

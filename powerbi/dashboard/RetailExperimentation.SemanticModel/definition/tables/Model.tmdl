@@ -1,0 +1,13 @@
+table Model
+	lineageTag: 2269e282-03b2-4d4d-9999-c2f08b8d0486
+
+	column model_name
+		dataType: string
+		lineageTag: 33749c26-986a-44c9-ad02-aac642220f9a
+		summarizeBy: none
+		sourceColumn: [model_name]
+
+	partition Model = calculated
+		mode: import
+		source = DISTINCT(UNION(SELECTCOLUMNS(uplift_model_results, "model_name", uplift_model_results[model_name]), SELECTCOLUMNS(uplift_predictions, "model_name", uplift_predictions[model_name]), SELECTCOLUMNS(uplift_deciles, "model_name", uplift_deciles[model_name])))
+

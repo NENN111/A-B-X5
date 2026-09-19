@@ -129,6 +129,21 @@ def test_feature_mart_uses_only_pre_treatment_window() -> None:
     assert second["rfm_segment"] is None
 
 
+def test_feature_mart_replaces_impossible_age_with_null() -> None:
+    frames = _frames()
+    frames["clients"] = pl.DataFrame(
+        {
+            "customer_key": [1, 2],
+            "age_years": [-945, 121],
+            "sex": ["F", "M"],
+        }
+    ).lazy()
+
+    result = build_customer_feature_mart(frames, _config()).collect()
+
+    assert result["age"].null_count() == 2
+
+
 def test_materialization_records_excluded_rows_and_mapping(tmp_path) -> None:
     output_path = tmp_path / "customer_features.parquet"
 

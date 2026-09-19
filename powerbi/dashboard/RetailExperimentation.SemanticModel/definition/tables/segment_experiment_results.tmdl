@@ -1,0 +1,96 @@
+table segment_experiment_results
+	lineageTag: 418d079d-6d7a-4e90-b6f7-d702ee3eeaf1
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 1d2b78d7-4c77-4acb-8972-9188f9ef2120
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column dimension
+		dataType: string
+		lineageTag: ba60dc42-ab88-4837-b233-857116c4bd90
+		summarizeBy: none
+		sourceColumn: dimension
+
+	column segment
+		dataType: string
+		lineageTag: 623f3f52-07a4-4558-9c0c-3d76610ee4c3
+		summarizeBy: none
+		sourceColumn: segment
+
+	column control_size
+		dataType: int64
+		lineageTag: d18f2a73-13c2-4b63-8504-f22a02cf6ba0
+		summarizeBy: none
+		sourceColumn: control_size
+
+	column treatment_size
+		dataType: int64
+		lineageTag: afdec7d2-201b-4f51-8af5-1133e07f27a1
+		summarizeBy: none
+		sourceColumn: treatment_size
+
+	column control_cr
+		dataType: double
+		lineageTag: da9ea28a-a269-4b65-8885-57c29654426a
+		summarizeBy: none
+		sourceColumn: control_cr
+
+	column treatment_cr
+		dataType: double
+		lineageTag: 8430ed3c-9c8d-4ca5-8efd-8f69ce18abda
+		summarizeBy: none
+		sourceColumn: treatment_cr
+
+	column absolute_uplift
+		dataType: double
+		lineageTag: 6bea4d88-41e9-4fe3-a897-3bf897d0a1b3
+		summarizeBy: none
+		sourceColumn: absolute_uplift
+
+	column relative_uplift
+		dataType: double
+		lineageTag: bbbc5012-847c-4431-a0f2-26a6886b4cc1
+		summarizeBy: none
+		sourceColumn: relative_uplift
+
+	column ci_lower
+		dataType: double
+		lineageTag: 60b0cba3-2c49-4c49-9928-53638612df7e
+		summarizeBy: none
+		sourceColumn: ci_lower
+
+	column ci_upper
+		dataType: double
+		lineageTag: 69816297-723a-4ecc-9459-b81cbe530378
+		summarizeBy: none
+		sourceColumn: ci_upper
+
+	column p_value
+		dataType: double
+		lineageTag: c449d04d-9a53-4b5e-8a0c-88b846adcfe2
+		summarizeBy: none
+		sourceColumn: p_value
+
+	column adjusted_p_value
+		dataType: double
+		lineageTag: 674ab5db-4139-4326-9a5c-79bdc7e6561d
+		summarizeBy: none
+		sourceColumn: adjusted_p_value
+
+	column significant_adjusted
+		dataType: boolean
+		lineageTag: 9a7dc77e-7a11-4d74-bd48-937f01d22747
+		summarizeBy: none
+		sourceColumn: significant_adjusted
+
+	partition segment_experiment_results = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="segment_experiment_results"]}[Data]
+				in
+					Data
+

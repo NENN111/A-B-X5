@@ -1,0 +1,178 @@
+table experiment_validation_summary
+	lineageTag: b7547fa3-7541-497e-bf9e-ee9cb97df4c6
+
+	column experiment_key
+		dataType: int64
+		lineageTag: 01066cbe-e7fe-486e-9b03-299ae23ec982
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column srm_p_value
+		dataType: double
+		lineageTag: 7999833c-15af-4589-ba8f-f3d7d7473cce
+		summarizeBy: sum
+		sourceColumn: srm_p_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column srm_detected
+		dataType: boolean
+		lineageTag: 10e85a54-0be5-46a7-aee5-4fbdf0478adf
+		summarizeBy: none
+		sourceColumn: srm_detected
+
+	column aa_simulations
+		dataType: int64
+		lineageTag: 661e273f-9575-4e2a-b6df-38c8e9c71090
+		summarizeBy: sum
+		sourceColumn: aa_simulations
+
+		annotation SummarizationSetBy = Automatic
+
+	column aa_false_positive_rate
+		dataType: double
+		lineageTag: f5767573-5a5f-49ea-afc5-fe47251bfeb2
+		summarizeBy: sum
+		sourceColumn: aa_false_positive_rate
+
+		annotation SummarizationSetBy = Automatic
+
+	column bootstrap_iterations
+		dataType: int64
+		lineageTag: 222441ff-b881-4623-ae1c-d24d5739ef18
+		summarizeBy: sum
+		sourceColumn: bootstrap_iterations
+
+		annotation SummarizationSetBy = Automatic
+
+	column observed_uplift
+		dataType: double
+		lineageTag: a7a5349c-553b-453d-9d94-b37224aab4e7
+		summarizeBy: sum
+		sourceColumn: observed_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column bootstrap_mean_uplift
+		dataType: double
+		lineageTag: 42064cdc-a461-46b1-9f60-55dd30c24c3e
+		summarizeBy: sum
+		sourceColumn: bootstrap_mean_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column bootstrap_median_uplift
+		dataType: double
+		lineageTag: ebf39ad5-876d-47aa-a09f-a7a7f63eb20d
+		summarizeBy: sum
+		sourceColumn: bootstrap_median_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column bootstrap_ci_lower
+		dataType: double
+		lineageTag: b0f8592d-3662-4046-bc45-f9a425a0bb85
+		summarizeBy: sum
+		sourceColumn: bootstrap_ci_lower
+
+		annotation SummarizationSetBy = Automatic
+
+	column bootstrap_ci_upper
+		dataType: double
+		lineageTag: 0e7774ca-b1ad-468a-9895-235f338ffaa4
+		summarizeBy: sum
+		sourceColumn: bootstrap_ci_upper
+
+		annotation SummarizationSetBy = Automatic
+
+	column observed_control
+		dataType: int64
+		formatString: 0
+		lineageTag: b609614d-9604-4b61-91b3-b095077ad050
+		summarizeBy: sum
+		sourceColumn: observed_control
+
+		annotation SummarizationSetBy = Automatic
+
+	column observed_treatment
+		dataType: int64
+		formatString: 0
+		lineageTag: f3fabe38-653b-49d4-ace9-e4d5e28c8e69
+		summarizeBy: sum
+		sourceColumn: observed_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_control
+		dataType: double
+		lineageTag: 2e3ae0df-a868-459d-bdf3-6f772dcadbe4
+		summarizeBy: sum
+		sourceColumn: expected_control
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_treatment
+		dataType: double
+		lineageTag: 9c36de0c-8fdc-4af9-a3ca-5df035097947
+		summarizeBy: sum
+		sourceColumn: expected_treatment
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column srm_chi_square
+		dataType: double
+		lineageTag: f1d28f1d-e658-4cda-91db-fcd375e65674
+		summarizeBy: sum
+		sourceColumn: srm_chi_square
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aa_mean_p_value
+		dataType: double
+		lineageTag: 0ba0937a-4a4e-4c24-9b2f-48e0e4070110
+		summarizeBy: sum
+		sourceColumn: aa_mean_p_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aa_ks_uniform_p_value
+		dataType: double
+		lineageTag: 9542dcd5-ce97-4327-961e-6ca02a1b2858
+		summarizeBy: sum
+		sourceColumn: aa_ks_uniform_p_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column calculated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 54aab3a6-4b11-40d8-a112-cf48f320193d
+		summarizeBy: none
+		sourceColumn: calculated_at
+
+		variation Изменение
+			isDefault
+			relationship: 8f0ccb5b-5457-4196-b6bf-561050a9aab8
+			defaultHierarchy: LocalDateTable_c8e3c05b-563a-4ab7-8913-98db561f0301.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition experiment_validation_summary = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="experiment_validation_summary"]}[Data]
+				in
+					Data
+

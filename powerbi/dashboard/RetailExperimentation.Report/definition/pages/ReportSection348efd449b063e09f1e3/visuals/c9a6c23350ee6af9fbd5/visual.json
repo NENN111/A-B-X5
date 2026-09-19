@@ -1,0 +1,110 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "c9a6c23350ee6af9fbd5",
+  "position": {
+    "x": 24.316109422492403,
+    "y": 379.3313069908815,
+    "z": 5,
+    "height": 292.7659574468085,
+    "width": 600.12158054711244,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fact_experiment"
+                    }
+                  },
+                  "Property": "treatment"
+                }
+              },
+              "queryRef": "fact_experiment.treatment",
+              "nativeQueryRef": "treatment",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Conversion Rate"
+                }
+              },
+              "queryRef": "Metrics.Conversion Rate",
+              "nativeQueryRef": "Conversion Rate"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Конверсия: control (0) vs treatment (1)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e1c779a951574d4c47e3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fact_experiment"
+              }
+            },
+            "Property": "treatment"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c064ae55d6c23c12143d",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Metrics"
+              }
+            },
+            "Property": "Conversion Rate"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

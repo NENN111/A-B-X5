@@ -1,0 +1,190 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 1453.5210240283614,
+            "y": 562.96907050067762
+          },
+          "nodeIndex": "Metrics",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 250.74947639094665,
+            "y": 1075.9381410013552
+          },
+          "nodeIndex": "business_scenarios",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1737.5210240283614,
+            "y": 612.96907050067762
+          },
+          "nodeIndex": "Communication Cost",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 755.32402513276179,
+            "y": 536.32117682108219
+          },
+          "nodeIndex": "dim_experiment",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 931.92900096174753,
+            "y": 795.65528712751484
+          },
+          "nodeIndex": "experiment_results",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 796.98832851300085,
+            "y": -50
+          },
+          "nodeIndex": "experiment_validation_summary",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 932.69513930573657,
+            "y": 305.61915464786466
+          },
+          "nodeIndex": "fact_experiment",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 795.75899420333758
+          },
+          "nodeIndex": "Model",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2021.5210240283614,
+            "y": 612.96907050067762
+          },
+          "nodeIndex": "Profit per Conversion",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1219.5210240283614,
+            "y": 435.82891056714993
+          },
+          "nodeIndex": "segment_experiment_results",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 2305.5210240283614,
+            "y": 612.96907050067762
+          },
+          "nodeIndex": "Targeting Threshold",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 292.42925598250906,
+            "y": 438.36697976879464
+          },
+          "nodeIndex": "uplift_deciles",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 490.65603762266539,
+            "y": 107.51602102020365
+          },
+          "nodeIndex": "uplift_model_results",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 525.08064608616587,
+            "y": 794.428662769256
+          },
+          "nodeIndex": "uplift_predictions",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Все таблицы",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Все таблицы",
+  "defaultDiagram": "Все таблицы"
+}

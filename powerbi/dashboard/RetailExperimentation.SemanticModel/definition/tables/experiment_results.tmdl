@@ -1,0 +1,193 @@
+table experiment_results
+	lineageTag: 88adc9f6-5d21-4ef8-83f8-f0ea592105b4
+
+	column experiment_key
+		dataType: int64
+		lineageTag: b87d6124-9016-4319-9bc8-cd39dee75337
+		summarizeBy: none
+		sourceColumn: experiment_key
+
+	column control_size
+		dataType: int64
+		lineageTag: a78832aa-a160-4c91-941e-9b5f11a47bb9
+		summarizeBy: sum
+		sourceColumn: control_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment_size
+		dataType: int64
+		lineageTag: 29b0e9a9-85a7-48fd-973d-5247e4269cbf
+		summarizeBy: sum
+		sourceColumn: treatment_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column control_conversions
+		dataType: int64
+		lineageTag: 3e8156c7-4812-471d-bdde-81f35fb92a31
+		summarizeBy: sum
+		sourceColumn: control_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment_conversions
+		dataType: int64
+		lineageTag: b8d21da2-406c-486e-9db5-fa0922644c95
+		summarizeBy: sum
+		sourceColumn: treatment_conversions
+
+		annotation SummarizationSetBy = Automatic
+
+	column control_cr
+		dataType: double
+		lineageTag: 8f4dfa20-ee64-4fe2-9b21-799714e5a83a
+		summarizeBy: sum
+		sourceColumn: control_cr
+
+		annotation SummarizationSetBy = Automatic
+
+	column treatment_cr
+		dataType: double
+		lineageTag: 6fa81d36-86a9-490f-8af2-a29d863ae955
+		summarizeBy: sum
+		sourceColumn: treatment_cr
+
+		annotation SummarizationSetBy = Automatic
+
+	column absolute_uplift
+		dataType: double
+		lineageTag: cdb4571a-6dbb-4f37-985e-d47206357879
+		summarizeBy: sum
+		sourceColumn: absolute_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column relative_uplift
+		dataType: double
+		lineageTag: 1fcb1dd8-fba7-4132-8200-7d7c76cfeaa1
+		summarizeBy: sum
+		sourceColumn: relative_uplift
+
+		annotation SummarizationSetBy = Automatic
+
+	column p_value
+		dataType: double
+		lineageTag: 259aaf65-996c-422b-989f-8c84273b4ff2
+		summarizeBy: sum
+		sourceColumn: p_value
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_lower
+		dataType: double
+		lineageTag: c130ff37-19db-44ce-9ca7-ee5b58f251b1
+		summarizeBy: sum
+		sourceColumn: ci_lower
+
+		annotation SummarizationSetBy = Automatic
+
+	column ci_upper
+		dataType: double
+		lineageTag: c8e8aeeb-388a-4430-8022-ffa3b5d3c941
+		summarizeBy: sum
+		sourceColumn: ci_upper
+
+		annotation SummarizationSetBy = Automatic
+
+	column achieved_power
+		dataType: double
+		lineageTag: 734eca21-1555-4dca-b208-51fbf2ca4334
+		summarizeBy: sum
+		sourceColumn: achieved_power
+
+		annotation SummarizationSetBy = Automatic
+
+	column mde_absolute
+		dataType: double
+		lineageTag: 27a38e0e-0047-4453-81d1-9004683d81be
+		summarizeBy: sum
+		sourceColumn: mde_absolute
+
+		annotation SummarizationSetBy = Automatic
+
+	column statistically_significant
+		dataType: boolean
+		lineageTag: fc9c4a7b-eb36-49e4-9e5e-194cfff2d631
+		summarizeBy: none
+		sourceColumn: statistically_significant
+
+	column standard_error
+		dataType: double
+		lineageTag: 06cdc1e0-242f-4148-9b31-b7940c6f22e4
+		summarizeBy: sum
+		sourceColumn: standard_error
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column z_statistic
+		dataType: double
+		lineageTag: 9ba4cdb2-dfe8-47a6-876c-a08b9f8ac462
+		summarizeBy: sum
+		sourceColumn: z_statistic
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column effect_size
+		dataType: double
+		lineageTag: 5c77084e-749f-46de-9df0-9ba9c28f1ec4
+		summarizeBy: sum
+		sourceColumn: effect_size
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column required_total_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 45b64871-486b-483e-a0bc-3acee6095f0b
+		summarizeBy: sum
+		sourceColumn: required_total_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column alpha
+		dataType: double
+		lineageTag: 1837e987-43ee-48fe-8d2c-299177ae64cc
+		summarizeBy: sum
+		sourceColumn: alpha
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column calculated_at
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 723700c9-3d8b-4ce3-bd41-ef6eceb52368
+		summarizeBy: none
+		sourceColumn: calculated_at
+
+		variation Изменение
+			isDefault
+			relationship: 0fd34198-9544-4e27-b996-61651f2e49aa
+			defaultHierarchy: LocalDateTable_1a37a748-e16b-46b7-9fcb-9b25fd8ec4a9.'Иерархия дат'
+
+		annotation SummarizationSetBy = Automatic
+
+	partition experiment_results = m
+		mode: import
+		source =
+				let
+					Source = PostgreSQL.Database(Server, Database),
+					Data = Source{[Schema="analytics", Item="experiment_results"]}[Data]
+				in
+					Data
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,13 @@
+table 'Communication Cost'
+	lineageTag: e5634084-e657-41ef-af88-228cfdaec2a9
+
+	column 'Communication Cost'
+		dataType: double
+		lineageTag: b44ba4a3-e155-4fb2-a144-3c4ac9a0306e
+		summarizeBy: none
+		sourceColumn: [Value]
+
+	partition 'Communication Cost' = calculated
+		mode: import
+		source = GENERATESERIES(0, 20, 0.5)
+

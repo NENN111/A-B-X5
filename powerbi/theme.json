@@ -1,0 +1,57 @@
+{
+  "name": "Retail Experimentation Light",
+  "dataColors": [
+    "#2563EB",
+    "#14B8A6",
+    "#7C3AED",
+    "#F59E0B",
+    "#64748B",
+    "#0EA5E9",
+    "#8B5CF6",
+    "#94A3B8"
+  ],
+  "background": "#F8FAFC",
+  "foreground": "#0F172A",
+  "tableAccent": "#2563EB",
+  "good": "#15803D",
+  "neutral": "#64748B",
+  "bad": "#B91C1C",
+  "minimum": "#DBEAFE",
+  "center": "#F8FAFC",
+  "maximum": "#2563EB",
+  "textClasses": {
+    "title": { "fontFace": "Segoe UI Semibold", "fontSize": 18, "color": "#0F172A" },
+    "header": { "fontFace": "Segoe UI Semibold", "fontSize": 12, "color": "#0F172A" },
+    "label": { "fontFace": "Segoe UI", "fontSize": 11, "color": "#334155" },
+    "callout": { "fontFace": "Segoe UI Semibold", "fontSize": 24, "color": "#0F172A" }
+  },
+  "visualStyles": {
+    "*": {
+      "*": {
+        "background": [{
+          "show": true,
+          "color": { "solid": { "color": "#FFFFFF" } },
+          "transparency": 0
+        }],
+        "border": [{
+          "show": true,
+          "color": { "solid": { "color": "#E2E8F0" } },
+          "radius": 4
+        }],
+        "visualHeader": [{
+          "show": true,
+          "foreground": { "solid": { "color": "#64748B" } }
+        }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{
+          "color": { "solid": { "color": "#F8FAFC" } },
+          "transparency": 0
+        }]
+      }
+    }
+  }
+}
+

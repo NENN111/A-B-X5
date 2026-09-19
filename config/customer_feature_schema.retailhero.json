@@ -1,0 +1,29 @@
+{
+  "experiment_start": "2019-03-19T00:00:00",
+  "lookback_days": 365,
+  "strict_referential_integrity": true,
+  "clients": {
+    "client_id": "client_id",
+    "age": "age",
+    "birth_date": null,
+    "gender": "gender"
+  },
+  "purchases": {
+    "client_id": "client_id",
+    "transaction_id": "transaction_id",
+    "transaction_datetime": "transaction_datetime",
+    "datetime_format": null,
+    "amount": "trn_sum_from_iss",
+    "product_id": "product_id",
+    "regular_amount": null
+  },
+  "products": {
+    "product_id": "product_id",
+    "category": "level_1"
+  },
+  "experiment": {
+    "client_id": "client_id",
+    "treatment": "treatment_flg",
+    "target": "target"
+  }
+}

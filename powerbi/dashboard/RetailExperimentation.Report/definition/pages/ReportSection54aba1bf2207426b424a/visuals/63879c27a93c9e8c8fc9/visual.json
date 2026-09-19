@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.12.0/schema.json",
+  "name": "63879c27a93c9e8c8fc9",
+  "position": {
+    "x": 24,
+    "y": 232,
+    "z": 5,
+    "height": 440,
+    "width": 600,
+    "tabOrder": 5
+  },
+  "visual": {
+    "visualType": "clusteredColumnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "uplift_deciles"
+                    }
+                  },
+                  "Property": "decile"
+                }
+              },
+              "queryRef": "uplift_deciles.decile",
+              "nativeQueryRef": "decile",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Predicted Decile Uplift"
+                }
+              },
+              "queryRef": "Metrics.Predicted Decile Uplift",
+              "nativeQueryRef": "Predicted Decile Uplift"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Metrics"
+                    }
+                  },
+                  "Property": "Observed Decile Uplift"
+                }
+              },
+              "queryRef": "Metrics.Observed Decile Uplift",
+              "nativeQueryRef": "Observed Decile Uplift"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Predicted и observed uplift по децилям'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
