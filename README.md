@@ -2,7 +2,7 @@
 
 End-to-end платформа для оценки маркетингового эксперимента в ритейле, исследования неоднородности эффекта воздействия и построения экономически обоснованной стратегии таргетинга. Python отвечает за статистические и ML-расчёты, PostgreSQL — за аналитические витрины, Power BI — за визуализацию и интерактивный анализ.
 
-> Статус: **Stage 4 реализован — готов переиспользуемый A/B testing engine для Conversion Rate, CI, effect size, power, sample size и MDE.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании не рассчитан.
+> Статус: **реализованы data layer, feature mart, A/B-анализ, валидация эксперимента и baseline uplift-модели.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании и качество моделей не рассчитаны.
 
 ## Бизнес-задача
 
@@ -37,9 +37,9 @@ flowchart LR
 
 ## Дизайн эксперимента
 
-Единица анализа — клиент, случайным образом назначенный в treatment или control. Основная метрика — Conversion Rate. Основная двусторонняя гипотеза сравнивает две независимые доли. Контроль качества эксперимента будет включать SRM, A/A-симуляцию, оценку мощности, MDE и bootstrap-анализ неопределённости.
+Единица анализа — клиент, случайным образом назначенный в treatment или control. Основная метрика — Conversion Rate. Основная двусторонняя гипотеза сравнивает две независимые доли. Контроль качества эксперимента включает SRM, A/A-симуляцию, оценку мощности, MDE и bootstrap-анализ неопределённости.
 
-## Методология и порядок разработки
+## Методология
 
 1. Очистка данных и профилирование источников.
 2. Клиентская витрина и RFM-признаки, построенные только на pre-treatment данных.
@@ -52,7 +52,7 @@ flowchart LR
 
 ## A/B-тестирование и валидация эксперимента
 
-Планируемые результаты:
+Рассчитываемые показатели:
 
 - размеры treatment и control;
 - конверсия в каждой группе;
@@ -63,7 +63,7 @@ flowchart LR
 - диагностика SRM и A/A;
 - bootstrap-распределение uplift.
 
-Для сегментного анализа будет применяться поправка Benjamini–Hochberg. Выводы не будут строиться только на нескорректированных p-value отдельных сегментов.
+Для сегментного анализа применяется поправка Benjamini–Hochberg. Выводы не строятся только на нескорректированных p-value отдельных сегментов.
 
 ## Построение признаков
 
@@ -71,7 +71,7 @@ flowchart LR
 
 ## Uplift-моделирование и оценка
 
-Интерпретируемыми baseline-моделями будут S-Learner и T-Learner на основе логистической регрессии. Модели будут оцениваться по uplift curve, Qini curve, Qini coefficient, AUUC и таблицам децилей, а не только по обычным predictive метрикам. Типы клиентов являются модельной интерпретацией, а не наблюдаемыми индивидуальными counterfactual-исходами.
+Реализованы S-Learner и T-Learner на основе логистической регрессии. Качество оценивается на стратифицированном holdout по uplift curve, Qini curve, Qini coefficient, AUUC и таблицам децилей, а не по обычным predictive метрикам. После оценки модели переобучаются на всей витрине для клиентского scoring. Predicted uplift является модельной оценкой, а не наблюдаемым индивидуальным counterfactual-исходом.
 
 ## Оценка бизнес-эффекта
 
@@ -87,7 +87,7 @@ flowchart LR
 4. Uplift Modeling.
 5. Business Impact.
 
-Статистические показатели рассчитываются до загрузки в Power BI. Семантическая модель, связи, форматирование и DAX-меры будут описаны на Stage 9.
+Статистические и модельные показатели рассчитываются до загрузки в Power BI.
 
 ## Технологии
 
@@ -117,14 +117,21 @@ src/
   experiments/aa_test.py        # A/A-симуляции
   experiments/bootstrap.py      # bootstrap uncertainty uplift
   experiments/segment_analysis.py
-  experiments/validation.py     # orchestration Stage 5
+  experiments/validation.py     # orchestration валидации
+  models/preprocessing.py       # единый feature preprocessing
+  models/s_learner.py           # S-Learner baseline
+  models/t_learner.py           # T-Learner baseline
+  models/uplift_metrics.py      # Qini, AUUC и децильные таблицы
+  models/model_evaluation.py    # holdout evaluation и scoring
 notebooks/01_data_overview.ipynb
 notebooks/02_ab_analysis.ipynb
 notebooks/03_experiment_validation.ipynb
+notebooks/05_uplift_modeling.ipynb
 docs/stage_02_data_cleaning.md
 docs/stage_03_customer_feature_mart.md
 docs/stage_04_ab_testing.md
 docs/stage_05_experiment_validation.md
+docs/uplift_modeling.md
 tests/                  # unit- и интеграционные тесты
 sql/ddl/00_init.sql     # начальная настройка схем базы данных
 Dockerfile
@@ -132,7 +139,7 @@ docker-compose.yml
 requirements.txt
 ```
 
-Модули data layer реализуются и тестируются поэтапно. Компоненты экспериментов, признаков, моделей, бизнес-логики, витрин и Power BI будут добавлены на соответствующих stages. Пустые файлы-заглушки намеренно не создаются.
+Основная логика данных, экспериментов и моделей находится в `src/`; notebook используются только для объяснения и визуализации. Пустые файлы-заглушки намеренно не создаются.
 
 ## Запуск проекта
 
@@ -171,7 +178,13 @@ python -m src.experiments.ab_test
 python -m src.experiments.validation
 ```
 
-SRM, A/A, bootstrap, сегментные эффекты и их тесты описаны в [docs/stage_05_experiment_validation.md](docs/stage_05_experiment_validation.md). Запуск PostgreSQL:
+SRM, A/A, bootstrap, сегментные эффекты и их тесты описаны в [docs/stage_05_experiment_validation.md](docs/stage_05_experiment_validation.md). Для обучения и честной holdout-оценки uplift-моделей выполните:
+
+```bash
+python -m src.models.model_evaluation
+```
+
+Формулы, защита от leakage, артефакты и тестовая стратегия описаны в [docs/uplift_modeling.md](docs/uplift_modeling.md). Запуск PostgreSQL:
 
 ```bash
 docker compose up -d postgres
@@ -189,8 +202,4 @@ docker compose --profile tools run --rm pipeline
 - В текущем checkout отсутствуют исходные файлы и их фактические схемы.
 - Фактические статистические результаты, качество моделей и бизнес-эффект ещё не рассчитаны без исходных данных.
 - Стандартные Docker credentials предназначены только для локальной разработки и должны быть заменены в другой среде.
-- Полный DDL аналитических витрин будет реализован на Stage 8 после проверки выходных схем.
-
-## Дальнейшее развитие
-
-Stages 6–10 последовательно добавят uplift-модели, оптимизацию таргетинга, PostgreSQL-витрины, документацию Power BI и финальную подготовку проекта для портфолио.
+- Аналитические DDL должны строиться только после проверки фактических выходных схем.
