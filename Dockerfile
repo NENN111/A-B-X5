@@ -10,6 +10,7 @@ COPY requirements.txt .
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY src ./src
+COPY sql ./sql
 COPY data/raw/README.md ./data/raw/README.md
 
 CMD ["python", "-m", "src.data.loader"]

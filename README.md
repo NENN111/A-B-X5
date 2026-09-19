@@ -2,7 +2,7 @@
 
 End-to-end платформа для оценки маркетингового эксперимента в ритейле, исследования неоднородности эффекта воздействия и построения экономически обоснованной стратегии таргетинга. Python отвечает за статистические и ML-расчёты, PostgreSQL — за аналитические витрины, Power BI — за визуализацию и интерактивный анализ.
 
-> Статус: **реализованы data layer, feature mart, A/B-анализ, валидация эксперимента, baseline uplift-модели и сценарная оптимизация таргетинга.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании, качество моделей и бизнес-результат не рассчитаны.
+> Статус: **реализованы data layer, feature mart, A/B-анализ, валидация эксперимента, baseline uplift-модели, сценарная оптимизация таргетинга и PostgreSQL-витрины.** Исходные файлы пока отсутствуют, поэтому фактический эффект кампании, качество моделей и бизнес-результат не рассчитаны.
 
 ## Бизнес-задача
 
@@ -106,6 +106,7 @@ src/
   data/quality.py       # профили качества и EDA-таблицы
   data/preprocessing.py # очистка, аудит и orchestration Stage 2
   data/database.py      # фабрика подключения к PostgreSQL
+  data/warehouse.py     # нормализация и загрузка PostgreSQL marts
   features/schema.py    # mapping фактических колонок на семантические роли
   features/rfm.py       # RFM scores и сегмент
   features/customer_features.py # клиентская feature mart
@@ -137,8 +138,12 @@ docs/stage_04_ab_testing.md
 docs/stage_05_experiment_validation.md
 docs/uplift_modeling.md
 docs/business_optimization.md
+docs/postgresql_marts.md
 tests/                  # unit- и интеграционные тесты
-sql/ddl/00_init.sql     # начальная настройка схем базы данных
+sql/ddl/00_init.sql     # создание схем
+sql/ddl/01_analytics.sql # таблицы, ключи и индексы
+sql/marts/01_power_bi_views.sql
+sql/analysis/01_quality_checks.sql
 Dockerfile
 docker-compose.yml
 requirements.txt
@@ -205,6 +210,17 @@ docker compose up -d postgres
 docker compose ps
 ```
 
+Загрузите канонические артефакты в одной транзакции:
+
+```bash
+python -m src.data.warehouse \
+  --experiment-name retailhero_campaign \
+  --mapping customer_feature_schema.json \
+  --scenario-name base
+```
+
+Зерно таблиц, ключи, индексы, правила идемпотентности и quality checks описаны в [docs/postgresql_marts.md](docs/postgresql_marts.md).
+
 Проверка схем источников внутри контейнера после добавления данных:
 
 ```bash
@@ -216,4 +232,4 @@ docker compose --profile tools run --rm pipeline
 - В текущем checkout отсутствуют исходные файлы и их фактические схемы.
 - Фактические статистические результаты, качество моделей и бизнес-эффект ещё не рассчитаны без исходных данных.
 - Стандартные Docker credentials предназначены только для локальной разработки и должны быть заменены в другой среде.
-- Аналитические DDL должны строиться только после проверки фактических выходных схем.
+- Интеграционная проверка DDL требует запущенного PostgreSQL; локальный Docker Engine может быть недоступен.
